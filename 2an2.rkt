@@ -1,16 +1,9 @@
 #lang sicp
-
-; Building on the above implementation, define the following operations for a point. object
 (define (make-point x y)(cons x y))
 (define (point-x p)(car p))
 (define (point-y p)(cdr p))
 (define (pretty-print p)
   (list 'x: (point-x p) 'y: (point-y p)))
-
-;----------"definitions below"-------------
-
-;Define point setter operations set-x! and set-y! to change the value of x and y coordinates, respectively.
-;--------------------------------------------------------------------------------------------------------------------------------------------------------------
 (define (set-x! Xchange)
   (set! point-x Xchange))
 (define (set-y! Ychange)
@@ -19,10 +12,8 @@
 ;testing
 (make-point 4 7)
 
-
-
-;2 Define a point operation clone that takes as argument a point object and returns its copy. The cloned point object should be independent of the original one.
-;---------------------------------------------------------------------------------------------------------------------------------------------------------------
+;2 Defining operational clone 
+;-----------------------------
 (define (clone point_z x y)
   ;check if its a pair and then clone car and cdr
   (if(pair? point_z)
@@ -36,8 +27,8 @@
 
 
 
-;3 Define a point operation distance that takes as argument two point objects and returns the distance between the two points.
-;---------------------------------------------------------------------------------------------------------------------------------------------------------------
+;3 Defining a point operational distance
+----------------------------------------
 ;Defining square operation
 (define (sqr value) (* value value))
 (define (dif_z pt1 pt2)
@@ -52,29 +43,7 @@
 
 ;Testing
 (distance (make-point 2 4) (make-point 8 7))
-
-
-
-;4  Define a point operation translate that takes as argument a point object, dx, dy and moves the x and y point coordinates by dx and dy, respectively.
-;---------------------------------------------------------------------------------------------------------------------------------------------------------------
-(define (translate point_1 dx dy)
-  (point_1 'set-x! (- (point_1 'point-x) dx))
-  (point_1 'set-y! (- (point_1 'point-y) dy)))
-
-
-
-;5 Define a point operation point=? that takes as argument two point objects and returns true if the two point objects are equal, false otherwise.
-;---------------------------------------------------------------------------------------------------------------------------------------------------------------
-(define (point=? x y)
-   (if (= x y)
-       'true
-       'false))
-;testing
-(point=? 14 6)
-
-
-;6 Complete the above implementation of make-point-2D such that a point object created using make-point-2D responds to all the operations
-;------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
 (define (make-point-2D x y)
   (let ((self (cons x y)))
     (define (point-x)
@@ -136,36 +105,3 @@
 (point1 'point-x)
 (point1 'point-y)
 
-;point setter operations
-(display "setting x and y values\n")
-(point1 'set-x! 4)
-(point1 'set-y! 6)
-(display "printing set points \n")
-(point1 'pretty-print)
-
-;clone operations
-(display "clone results \n")
-(define point2 (point1 'clone))
-
-(display "X and Y setting \n")
-(point1 'set-x! 7)
-(point1 'set-y! 9)
-
-;printing the point
-(display "second printing \n")
-(point1 'pretty-print)
-(point2 'pretty-print)
-
-;Distance between the points
-(display "Distance between two points \n")
-(point1 'distance point1 point2)
-
-;translation for point
-(display "Translation results for point1  5 8\n")
-(point1 'translate point1 5 8)
-(point1 'pretty-print)
-
-;Comparing points equivalence
-(display "Compare points to check Equivalence \n")
-(point1 'point=? point1 point2)
-(point1 'pretty-print)
